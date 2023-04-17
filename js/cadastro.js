@@ -1,8 +1,8 @@
 const btnCadastro = document.querySelector('.btn_cadastro');
-btnCadastro.addEventListener('click',(e)=>{
+btnCadastro.addEventListener('click', async(e)=>{
     e.preventDefault()
-    const senha = document.querySelector('.input_email').value;
-    const email = document.querySelector('.input_password').value;
+    const senha = document.querySelector('.input_password').value;
+    const email = document.querySelector('.input_email').value;
     const nome = document.querySelector('.input_nome').value;
     const modal = document.querySelector('.modal_preencha');
     const filter = document.querySelector('.filter');
@@ -10,9 +10,44 @@ btnCadastro.addEventListener('click',(e)=>{
         modal.style.visibility = "visible";
         filter.style.visibility = "visible";
     } else {
-        window.location.assign('../pages/home.html');
+        const data = {
+            "name": `${nome}`,
+            "email": `${email}`
+        }
+    
+        const myInit = {
+            method: "POST",
+            mode: "cors",
+            headers: {
+              "Content-Type": "application/json",
+              "senha": `${senha}`
+            },
+            body: JSON.stringify(data), 
+        }
+       
+        const result = await fetch('https://api-agenda.cyclic.app/users/create', myInit)
+        .then((result)=>{
+            if(result.status===401) {
+                return false
+            } else {
+                return result;
+            }
+        })
+        .catch((erro)=>{console.log(erro)})
+        
+        if(result===false){
+            modal.style.visibility = "visible";
+            filter.style.visibility = "visible";
+        } else {
+            console.log(result)
+        }
     }
+
+    
+
 })
+
+// window.location.assign('../pages/home.html');
 
 const btnFecharModal = document.querySelector('.btn_preencha_x');
 btnFecharModal.addEventListener('click', (e)=>{

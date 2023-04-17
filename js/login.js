@@ -1,15 +1,27 @@
 const btnLogin = document.querySelector('.btn_login');
-btnLogin.addEventListener('click',(e)=>{
+btnLogin.addEventListener('click', async(e)=>{
     e.preventDefault()
-    const senha = document.querySelector('.input_email').value;
-    const email = document.querySelector('.input_password').value;
+    const senha = document.querySelector('.input_password').value;
+    const email = document.querySelector('.input_email').value;
     const modal = document.querySelector('.modal_preencha');
+    const p = document.querySelector('.modal_preencha_p');
     const filter = document.querySelector('.filter');
     if(senha==="" || email===""){
         modal.style.visibility = "visible";
         filter.style.visibility = "visible";
+    }
+    const dados = await fetch(`https://api-agenda.cyclic.app/users/login?email=${email}&senha=${senha}`)
+        .then((result)=>{ return result.json()})
+        .catch((e)=>{})
+
+    console.log(dados)
+    
+    if(dados.msg){
+        modal.style.visibility = "visible";
+        filter.style.visibility = "visible";
     } else {
-        window.location.assign('../pages/home.html')
+        localStorage.setItem("id_user", JSON.stringify(dados))
+        window.location.assign('../pages/home.html');
     }
 })
 
