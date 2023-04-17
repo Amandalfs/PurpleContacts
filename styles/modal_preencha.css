@@ -1,0 +1,57 @@
+.modal_preencha {
+    display: flex;
+    visibility: hidden;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    position: absolute;
+    width: 280px;
+    height: 120px;
+    gap: 10px;
+    left: 570px;
+    top: 261px;
+    background: #FFFDFD;
+    border-radius: 8px;
+    z-index: 1;
+}
+
+.modal_preencha h1 {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 28px;
+    text-align: center;
+
+    color: #000000
+}
+
+.modal_preencha p {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+
+    color: #000000;
+}
+
+.btn_preencha_x {
+    position: absolute;
+    left: 250px;
+    right: 35.07%;
+    top: 10px;
+}
+
+.filter {
+    display: inline;
+    visibility: hidden;
+    position: absolute;
+    width: 100vw;
+    height: 900px;
+    left: 0px;
+    top: 0px;
+
+    background: rgba(16, 15, 15, 0.56);
+}

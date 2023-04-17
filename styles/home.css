@@ -1,0 +1,120 @@
+.menu {
+    display: flex;
+    flex-direction: row;
+    width: 1440px;
+    height: 70px;
+
+    margin-bottom: 102px;
+    text-align: center;
+    align-items: center;
+    justify-content: end;
+    gap: 607px;
+
+    background: #134563;
+}
+
+.menu h1 {
+
+    font-family: 'Rokkitt', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 27px;
+    text-align: center;
+
+    color: #FFFFFF;
+}
+
+.menu_sair {
+    height: 16px;
+    width: 16px;
+    margin-right: 31px;
+}
+.home {
+    display: flex;
+    flex-direction: column;
+    margin: 0 240px;
+    height: 900px;
+}
+
+.btn_add {
+    width: 235px;
+    height: 51px;
+
+    margin-bottom: 32px;
+
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+
+    text-align: center;
+
+    color: #FFFFFF;
+
+    background: #04C45C;
+    border-radius: 8px;
+    border: none;
+}
+
+.contatos {
+    margin-left: 32px;
+}
+
+.contatos_header {
+    display: flex;
+    flex-direction: row;
+
+    padding: 16px 0;
+    margin-bottom: 24px;
+
+    gap: 216px;
+}
+
+.contatos_header h1 {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 14px;
+
+    color: #1C1414;
+}
+
+.cont_template {
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+
+    width: 956px;
+    height: 46px;
+}
+
+.cont_template p {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+
+    color: rgba(28, 20, 20, 0.79);
+}
+
+.template_nome {
+    width: 250px;
+}
+
+.template_email {
+    width: 250px;
+}
+
+.btn_delete {
+    border: none;
+    margin-left: 275px;
+    background-image: url('../assets/Icon-Trash.png');
+    background-size: auto;
+    height: 16px;
+    width: 16px;
+}

@@ -1,0 +1,107 @@
+@import url(reset.css);
+@import url(global.css);
+
+.login {
+    display: flex;
+    flex-direction: row;
+}
+
+.login_img {
+    width: 720px;
+    height: 900px;
+}
+.login-form {
+    display: flex;
+    flex-direction: column;
+
+    width: 477px;
+    height: 453px;
+
+    margin: 240px 122px 207px 121px;
+}
+
+.login-form p{
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    
+    color: #000000
+}
+
+.login-form h1 {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 38px;
+
+    color: #000000;
+
+    margin-bottom: 32px;
+}
+
+.form_inputs{
+    display: flex;
+    flex-direction: column;
+
+    gap: 16px;
+    margin-bottom: 72px;
+}
+
+
+.form_inputs input{
+    width: 476px;
+    height: 51px;
+    
+    background: #FDFAFA;
+    border: 1px solid #E8E8E8;
+    font-size: 16px;
+}
+
+.form_inputs input::placeholder {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    padding-left: 16px;
+}
+
+.btn_login {
+    width: 475px;
+    height: 50px;
+
+    margin-bottom: 96px;
+
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+
+    text-align: center;
+
+    color: #FFFFFF;
+    background: #04C45C;
+    border-radius: 8px;
+    border: none;
+}
+
+.ir_cadastro_p {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+
+    text-align: center;
+
+    color: #000000;
+}
+
+.ir_cadastro_span {
+    color: #1972A8;
+}
+
