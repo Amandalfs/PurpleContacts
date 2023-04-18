@@ -17,20 +17,18 @@ btnCadastro.addEventListener('click', async(e)=>{
     
         const myInit = {
             method: "POST",
-            mode: "cors",
             headers: {
               "Content-Type": "application/json",
               "senha": `${senha}`
             },
             body: JSON.stringify(data), 
         }
-       
         const result = await fetch('https://api-agenda.cyclic.app/users/create', myInit)
         .then((result)=>{
             if(result.status===401) {
                 return false
             } else {
-                return result;
+                return result.json();
             }
         })
         .catch((erro)=>{console.log(erro)})
@@ -39,15 +37,14 @@ btnCadastro.addEventListener('click', async(e)=>{
             modal.style.visibility = "visible";
             filter.style.visibility = "visible";
         } else {
-            console.log(result)
+            localStorage.setItem("id_user", JSON.stringify(result.id_user))
+            window.location.assign('../pages/home.html');
         }
     }
 
     
 
 })
-
-// window.location.assign('../pages/home.html');
 
 const btnFecharModal = document.querySelector('.btn_preencha_x');
 btnFecharModal.addEventListener('click', (e)=>{
