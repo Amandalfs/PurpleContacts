@@ -39,11 +39,11 @@
     </div>
     <div class="modal_add">
         <h1>Novo Contato</h1>
-        <div class="modal_add_inputs">
-            <input type="text" name="" class="input_nome" id="" placeholder="Nome:">
-            <input type="text" name="" class="input_email" id="" placeholder="Email:">
-            <input type="password" name="" id="" class="input_password" placeholder="Senha:">
-        </div>
+        <form class="modal_add_inputs">
+            <input type="text" name="" class="adicionar_input_nome" id="" placeholder="Nome:">
+            <input type="text" name="" class="adicionar_input_email" id="" placeholder="Email:">
+            <input type="text" name="" id="" class="adicionar_input_telefone" placeholder="Telefone:">
+        </form>
         <span class="error_add_modal"></span>
         <button class="modal_btn_add">ADICIONAR</button>
         <button class="modal_btn_limpar">LIMPAR</button>
@@ -54,10 +54,10 @@
         <div class="modal_editar_inputs">
             <input type="text" name="" class="editar-input_nome" id="" placeholder="Nome:">
             <input type="text" name="" class="editar-input_email" id="" placeholder="Email:">
-            <input type="password" name="" id="" class="editar-input_password" placeholder="Senha:">
+            <input type="text" name="" id="" class="editar-input_telefone" placeholder="Telefone:">
         </div>
         <span class="error_editar_modal"></span>
-        <button class="modalEditar_btn_add">ADICIONAR</button>
+        <button class="modalEditar_btn_editar">EDITAR</button>
         <button class="modalEditar_btn_limpar">LIMPAR</button>
         <button class="modalEditar_add_x"></button>
     </div>
@@ -66,4 +66,5 @@
     </div>
 </body>
 <script src="../js/home.js"></script>
+<script src="../js/adicionar.js"></script>
 </html>
