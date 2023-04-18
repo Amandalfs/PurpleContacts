@@ -74,3 +74,4 @@ btnFechar.addEventListener('click',(e)=>{
 async function apiRenderAdicionar(myInit){
     await fetch(`https://api-agenda.cyclic.app/contatos/adicionar`, myInit)
 }
+

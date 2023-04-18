@@ -3,14 +3,20 @@ window.addEventListener('load', ()=>{
 })
 
 
+let btnsDel = document.querySelectorAll('.btn_delete');
+let  modalDelete = document.querySelector('.modal_remove');
+let filterDelete = document.querySelector('.filter');
+
+const id_user = JSON.parse(localStorage.getItem('id_user', JSON.stringify)).id_user; 
+let idAgenda;
+
 async function monstrarDados(){
     const contatos = document.querySelector('.template_principal');
-
-    const id_user = JSON.parse(localStorage.getItem('id_user', JSON.stringify)).id_user; 
+    
     const dados = await apiRender(id_user);
 
     console.log(dados)
-    dados.contatos.forEach((dado)=> {
+    await dados.contatos.forEach((dado)=> {
         const divPrincipal = document.createElement('div')
         divPrincipal.setAttribute('class', 'cont_template');
 
@@ -43,8 +49,56 @@ async function monstrarDados(){
         divPrincipal.appendChild(btnEdit);
         contatos.appendChild(divPrincipal);
 
+            
+        btnsDel = document.querySelectorAll('.btn_delete');
+        modalDelete = document.querySelector('.modal_remove');
+        filterDelete = document.querySelector('.filter');
+
     });
+        
+
     
+    for(let btnDelete of btnsDel){
+        btnDelete.addEventListener('click', (e)=>{
+            idAgenda = e.target.value 
+            modalDelete.style.visibility = "visible";
+            filterDelete.style.visibility = "visible";
+        })  
+    }
+   
+    const btnFecharDelete = document.querySelector('.modal_remove_btn_x');
+    const btnCancelarDelete = document.querySelector('.modal_remove_btn_cancelar');
+    for(let fecharDelete  of [btnFecharDelete, btnCancelarDelete]){
+        fecharDelete.addEventListener('click',(e)=>{
+            idAgenda = undefined; 
+            modalDelete.style.visibility = "hidden";
+            filterDelete.style.visibility = "hidden";   
+            location.reload()
+        })
+    }
+
+    const btnExcluir = await document.querySelector('.modal_remove_btn_excluir');
+    btnExcluir.addEventListener('click', async(e)=>{
+            e.preventDefault();
+            e.stopPropagation();
+            const bodyDelete = {
+                "id_agenda": idAgenda,
+                "id_user": id_user
+            }
+            const myInitDelete = {
+                method: 'DELETE',
+                headers: {
+                    "Content-Type":"application/json"
+                },
+                body: JSON.stringify(bodyDelete) 
+            }
+
+            await apiRenderDeleta(myInitDelete);
+
+            modalDelete.style.visibility = "hidden";
+            filterDelete.style.visibility = "hidden";
+        }
+    )
 }   
 
 const btnSair = document.querySelector('.menu_sair')
@@ -63,3 +117,9 @@ async function apiRender(id){
                 .catch((e)=> {return false});
     return dados;
 }
+
+async function apiRenderDeleta(myInit){
+    fetch(`https://api-agenda.cyclic.app/contatos/deleta`, myInit)
+        .then((result)=>{console.log(result)})
+}
+
