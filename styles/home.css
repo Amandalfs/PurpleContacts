@@ -82,12 +82,16 @@
     color: #1C1414;
 }
 
+.template_principal {
+    display: flex;
+    flex-direction: column;
+}
+
 .cont_template {
     display: flex;
     flex-direction: row;
 
     align-items: center;
-
     width: 956px;
     height: 46px;
 }
@@ -102,19 +106,34 @@
     color: rgba(28, 20, 20, 0.79);
 }
 
+
 .template_nome {
     width: 250px;
 }
 
 .template_email {
     width: 250px;
+    
+}
+
+.template_telefone {
+    width: 350px;
 }
 
 .btn_delete {
     border: none;
-    margin-left: 275px;
     background-image: url('../assets/Icon-Trash.png');
     background-size: auto;
+    margin-left: 50px;
     height: 16px;
     width: 16px;
+}
+
+.btn_edit {
+    border: none;
+    background-image: url('../assets/editarimg.png');
+    background-size: 100%;
+    margin-left: 50px;
+    height: 20px;
+    width: 20px;
 }
