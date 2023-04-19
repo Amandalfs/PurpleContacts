@@ -28,7 +28,7 @@ btnAdd.addEventListener('click',async(e)=>{
     nome = document.querySelector('.adicionar_input_nome').value
     email = document.querySelector('.adicionar_input_email').value
     telefone = document.querySelector('.adicionar_input_telefone').value
-    const id_user = JSON.parse(localStorage.getItem('id_user')).id_user
+    const id_user = JSON.parse(localStorage.getItem('id_user'))
     console.log(id_user)
     if(nome==="" || email==="" || telefone ===""){
         erroSpan.innerHTML = "Preencha os campos para adicionar um novo contato"

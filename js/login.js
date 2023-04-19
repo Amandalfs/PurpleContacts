@@ -10,8 +10,8 @@ btnLogin.addEventListener('click', async(e)=>{
         modal.style.visibility = "visible";
         filter.style.visibility = "visible";
     }
-    const dados = await fetch(`https://api-agenda.cyclic.app/users/login?email=${email}&senha=${senha}`)
-        .then((result)=>{ return result.json()})
+    const dados = await api.get(`users/login?email=${email}&senha=${senha}`)
+        .then((result)=>{ return result})
         .catch((e)=>{})
 
     console.log(dados)
@@ -20,7 +20,7 @@ btnLogin.addEventListener('click', async(e)=>{
         modal.style.visibility = "visible";
         filter.style.visibility = "visible";
     } else {
-        localStorage.setItem("id_user", JSON.stringify(dados))
+        localStorage.setItem("id_user", JSON.stringify(dados.data.id_user))
         window.location.assign('../pages/home.html');
     }
 })

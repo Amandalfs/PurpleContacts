@@ -7,7 +7,7 @@ let btnsDel = document.querySelectorAll('.btn_delete');
 let  modalDelete = document.querySelector('.modal_remove');
 let filterDelete = document.querySelector('.filter');
 
-const id_user = JSON.parse(localStorage.getItem('id_user', JSON.stringify)).id_user; 
+const id_user = JSON.parse(localStorage.getItem('id_user', JSON.stringify)); 
 let idAgenda;
 
 async function monstrarDados(){
