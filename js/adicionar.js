@@ -39,15 +39,13 @@ btnAdd.addEventListener('click',async(e)=>{
             "telefone": telefone,
             "id_user": id_user
         }
-        const myInit = {
-            method: 'POST',
+        
+        await apiRenderAdicionar(body, {
             headers: {
                 "Content-Type": "application/json"
             },
             mode: 'cors',
-            body: JSON.stringify(body)
-        }
-        await apiRenderAdicionar(myInit);
+        });
         modalAdicionar.style.visibility = "hidden";
         filter.style.visibility = "hidden";
         location.reload()
@@ -71,7 +69,7 @@ btnFechar.addEventListener('click',(e)=>{
 })
 
 
-async function apiRenderAdicionar(myInit){
-    await fetch(`https://api-agenda.cyclic.app/contatos/adicionar`, myInit)
+async function apiRenderAdicionar(data, config){
+    await api.post(`https://api-agenda.cyclic.app/contatos/adicionar`, data, config)
 }
 
