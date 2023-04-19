@@ -14,30 +14,22 @@ btnCadastro.addEventListener('click', async(e)=>{
             "name": `${nome}`,
             "email": `${email}`
         }
-    
-        const myInit = {
-            method: "POST",
+        const result = await api.post('users/create', data, {
             headers: {
-              "Content-Type": "application/json",
-              "senha": `${senha}`
-            },
-            body: JSON.stringify(data), 
-        }
-        const result = await fetch('https://api-agenda.cyclic.app/users/create', myInit)
+                "Content-Type": "application/json",
+                "senha": `${senha}`
+              }
+        })
         .then((result)=>{
-            if(result.status===401) {
-                return false
-            } else {
-                return result.json();
-            }
+                return result;
         })
         .catch((erro)=>{console.log(erro)})
         
-        if(result===false){
+        if(result.status!==201){
             modal.style.visibility = "visible";
             filter.style.visibility = "visible";
         } else {
-            localStorage.setItem("id_user", JSON.stringify(result.id_user))
+            localStorage.setItem("id_user", JSON.stringify(result.data.id_user))
             window.location.assign('../pages/home.html');
         }
     }
