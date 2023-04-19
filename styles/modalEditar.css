@@ -5,7 +5,7 @@
     position: absolute;
 
     width: 476px;
-    height: 563px;
+    height: 520px;
 
     left: 488px;
     top: 188px;
@@ -32,11 +32,10 @@
 
 }
 
-.modal_ediitar_inputs {
+.modal_editar_inputs {
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-    margin-bottom: 72px;
     gap: 17px;
 }
 
@@ -60,7 +59,7 @@
     color: #968B8B;
 }
 
-.modalEditar_btn_add {
+.modalEditar_btn_editar {
     width: 364px;
     height: 50px;
 
@@ -125,4 +124,16 @@
     top: 18px;
     border: none;
     background-image: url('../assets/Vector.png');
+}
+
+.error_editar_modal {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+
+    color: red;
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 500;
 }

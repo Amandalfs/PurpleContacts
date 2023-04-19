@@ -7,8 +7,15 @@ let btnsDel = document.querySelectorAll('.btn_delete');
 let  modalDelete = document.querySelector('.modal_remove');
 let filterDelete = document.querySelector('.filter');
 
+
+
+const modalEdit = document.querySelector('.modal_editar');
+const formEdit = document.querySelector('.modal_editar_inputs');
 const id_user = JSON.parse(localStorage.getItem('id_user', JSON.stringify)); 
 let idAgenda;
+
+let btnsEdits = document.querySelectorAll('.btn_edit');
+
 
 async function monstrarDados(){
     const contatos = document.querySelector('.template_principal');
@@ -54,8 +61,11 @@ async function monstrarDados(){
         modalDelete = document.querySelector('.modal_remove');
         filterDelete = document.querySelector('.filter');
 
+        btnsEdits = document.querySelectorAll('.btn_edit');
+
     });
         
+
 
     
     for(let btnDelete of btnsDel){
@@ -77,29 +87,40 @@ async function monstrarDados(){
         })
     }
 
-    const btnExcluir = await document.querySelector('.modal_remove_btn_excluir');
-    btnExcluir.addEventListener('click', async(e)=>{
-            e.preventDefault();
-            e.stopPropagation();
-            const bodyDelete = {
-                "id_agenda": idAgenda,
-                "id_user": id_user
-            }
-            const myInitDelete = {
-                method: 'DELETE',
-                headers: {
-                    "Content-Type":"application/json"
-                },
-                body: JSON.stringify(bodyDelete) 
-            }
 
-            await apiRenderDeleta(myInitDelete);
 
-            modalDelete.style.visibility = "hidden";
-            filterDelete.style.visibility = "hidden";
-        }
-    )
+
+
+    for(let btnEdit of btnsEdits){
+        btnEdit.addEventListener('click', async(e)=>{
+            idAgenda = e.target.value 
+            const dadosInfosEdit = await apiRenderContatoById(id_user, idAgenda);
+            console.log(dadosInfosEdit, idAgenda)
+            modalEdit.style.visibility = "visible";
+            filterDelete.style.visibility = "visible";
+            formEdit.children[0].value = dadosInfosEdit.data.contatos[0].name
+            formEdit.children[1].value = dadosInfosEdit.data.contatos[0].email
+            formEdit.children[2].value = dadosInfosEdit.data.contatos[0].telefone
+        })  
+    }  
+
 }   
+
+const btnExcluir = document.querySelector('.modal_remove_btn_excluir');
+btnExcluir.addEventListener('click', async(e)=>{
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const resultDel = await apiRenderDeleta({
+            id_agenda: Number(idAgenda),
+            id_user: id_user
+        });
+        modalDelete.style.visibility = "hidden";
+        filterDelete.style.visibility = "hidden";
+        location.reload()
+    }
+)
+
 
 const btnSair = document.querySelector('.menu_sair')
 btnSair.addEventListener('click',(e)=>{
@@ -109,17 +130,56 @@ btnSair.addEventListener('click',(e)=>{
 })
 
 
+
+
+const btnEditLimpar = document.querySelector('.modalEditar_btn_limpar')
+btnEditLimpar.addEventListener('click',(e)=>{
+    e.preventDefault()
+    e.stopPropagation()
+
+    formEdit.reset()
+})
+
+const btnEditFechar = document.querySelector('.modalEditar_add_x')
+btnEditFechar.addEventListener('click', (e)=>{
+    e.preventDefault()
+    e.stopPropagation()
+
+    modalEdit.style.visibility = "hidden";
+    filterDelete.style.visibility = "hidden";
+})
+
+const btnEditarConfim = document.querySelector('.modalEditar_btn_editar');
+btnEditarConfim.addEventListener('click', async(e)=>{
+    e.preventDefault()
+    e.stopPropagation()
+    
+   
+
+    modalDelete.style.visibility = "hidden";
+    filterDelete.style.visibility = "hidden";
+})
+
+
+
+
 async function apiRender(id){
-    const dados = await fetch(`
-    https://api-agenda.cyclic.app/contatos/${id}`)
-        .then(result => result.json())
+    const dados = await api.get(`contatos/${id}`)
+        .then(result => result.data)
             .then(data => {return data})
                 .catch((e)=> {return false});
     return dados;
 }
 
-async function apiRenderDeleta(myInit){
-    fetch(`https://api-agenda.cyclic.app/contatos/deleta`, myInit)
-        .then((result)=>{console.log(result)})
+async function apiRenderDeleta(dataDelete){
+   return await api.delete("contatos/deleta", {data:dataDelete})
 }
 
+async function apiRenderContatoById(id_user, id_agenda){
+    return api.get(`contatos/${id_user}?id_agenda=${id_agenda}`)
+}
+
+
+async function apiRenderEditar(data, id_user){
+    return api.get(`contatos/editar/${id_user}`, data)
+}

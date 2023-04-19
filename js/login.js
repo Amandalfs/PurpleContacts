@@ -16,7 +16,7 @@ btnLogin.addEventListener('click', async(e)=>{
 
     console.log(dados)
     
-    if(dados.msg){
+    if(dados.data.msg){
         modal.style.visibility = "visible";
         filter.style.visibility = "visible";
     } else {

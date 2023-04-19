@@ -70,6 +70,6 @@ btnFechar.addEventListener('click',(e)=>{
 
 
 async function apiRenderAdicionar(data, config){
-    await api.post(`https://api-agenda.cyclic.app/contatos/adicionar`, data, config)
+    await api.post(`contatos/adicionar`, data, config)
 }
 
