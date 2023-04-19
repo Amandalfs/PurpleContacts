@@ -10,7 +10,7 @@ let filterDelete = document.querySelector('.filter');
 
 
 const modalEdit = document.querySelector('.modal_editar');
-const formEdit = document.querySelector('.modal_editar_inputs');
+let formEdit = document.querySelector('.modal_editar_inputs');
 const id_user = JSON.parse(localStorage.getItem('id_user', JSON.stringify)); 
 let idAgenda;
 
@@ -141,7 +141,7 @@ btnEditLimpar.addEventListener('click',(e)=>{
 })
 
 const btnEditFechar = document.querySelector('.modalEditar_add_x')
-btnEditFechar.addEventListener('click', (e)=>{
+btnEditFechar.addEventListener('click', async(e)=>{
     e.preventDefault()
     e.stopPropagation()
 
@@ -154,10 +154,19 @@ btnEditarConfim.addEventListener('click', async(e)=>{
     e.preventDefault()
     e.stopPropagation()
     
-   
+    formEdit = document.querySelector('.modal_editar_inputs')
+    const dataEdit = {
+        id_agenda: idAgenda,
+        name: formEdit.children[0].value,
+        email: formEdit.children[1].value,
+        telefone: formEdit.children[2].value,
 
-    modalDelete.style.visibility = "hidden";
+    }
+    const resultEdit = await apiRenderEditar(dataEdit, id_user)
+    modalEdit.style.visibility = "hidden";
     filterDelete.style.visibility = "hidden";
+
+    location.reload()
 })
 
 
@@ -181,5 +190,5 @@ async function apiRenderContatoById(id_user, id_agenda){
 
 
 async function apiRenderEditar(data, id_user){
-    return api.get(`contatos/editar/${id_user}`, data)
+    return api.put(`contatos/editar/${id_user}`, data)
 }
